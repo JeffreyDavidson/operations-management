@@ -1,11 +1,19 @@
-angular.module("employeesApp").service("dataService", function () {
+angular.module("employeesApp").service("dataService", function ($http) {
     
     var employeesList = [];
     
     this.getEmployees = function () {
-        var str = localStorage.getItem("Employees");
-        employeesList = JSON.parse(str) || employeesList;
-        return employeesList;
+        $http.get("https://randomuser.me/api/?nat=us&results=100&inc=name,location")
+        .then(function(response) {
+            this.employeesList = response.data.results.map(employee => ({
+                employeeName: employee.name.first + ' ' + employee.name.last,
+                employeeStreet: employee.location.street.number + ' ' + employee.location.street.name,
+                employeeCity: employee.location.city,
+                employeeState: employee.location.state,
+                employeeZipCode: employee.location.postcode
+            }));
+        });
+    };
     };
     
     this.addEmployee = function (employee) {
