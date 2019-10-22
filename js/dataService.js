@@ -14,7 +14,6 @@ angular.module("employeesApp").service("dataService", function ($http) {
             }));
         });
     };
-    };
     
     this.addEmployee = function (employee) {
         var employeesList = this.getEmployees();
