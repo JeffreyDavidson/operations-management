@@ -5,7 +5,12 @@ angular.module("employeesApp",  []).controller("DBController", function ($scope,
     $scope.employeeState;
     $scope.employeeZipCode;
     
-    $scope.employeesList = dataService.getEmployees();
+    var promise = dataService.getEmployees();
+
+    promise.then(list => {
+        // console.log(list);
+        $scope.employeesList = list;
+    });
     
     $scope.addEmployee = function() {
         var employee = {
@@ -28,6 +33,7 @@ angular.module("employeesApp",  []).controller("DBController", function ($scope,
     }
     
     $scope.deleteEmployee = function(deletedEmployee) {
+        // console.log(deletedEmployee);
         dataService.removeEmployee(deletedEmployee);
         $scope.employeesList = dataService.getEmployees();
     }
