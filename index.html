@@ -18,63 +18,13 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h2>Add an Employee</h2>
-								<form>
-									<div class="form-group">
-										<label for="name">Name:</label>
-										<input type="text" id="name" name="name" class="form-control" ng-model="employeeName">
-									</div>
-									<div class="form-group">
-										<label for="street">Street:</label>
-										<input type="text" id="street" name="street" class="form-control" ng-model="employeeStreet">
-									</div>
-									<div class="form-group">
-										<label for="city">City:</label>
-										<input type="text" id="city" name="city" class="form-control" ng-model="employeeCity">
-									</div>
-									<div class="form-group">
-										<label for="state">State:</label>
-										<input type="text" id="state" name="state" class="form-control" ng-model="employeeState">
-									</div>
-									<div class="form-group">
-										<label for="zipcode">Zip Code:</label>
-										<input type="text" id="zipcode" name="zipcode" class="form-control" ng-model="employeeZipCode">
-									</div>
-									<button type="submit" ng-click="addEmployee()" class="btn btn-primary">Add</button>
-								</form>
+								<div ng-include="'views/form.html'"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</modal>
-			<div class="row mt-6">
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<i class="fas fa-calendar-week fa-2x text-success"></i>
-							<span class="display-3">0</span>
-							<h5 class="card-title">New Hires This Week</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<i class="fa fas fa-calendar fa-2x text-success"></i>
-							<span class="display-3">0</span>
-							<h5 class="card-title">New Hires This Year</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<i class="fas fa-fire fa-2x text-danger"></i>
-							<span class="display-3">0</span>
-							<h5 class="card-title">Fires This Year</h5>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div ng-include src="'views/stats.html'"></div>
 			<div class="row mt-4">	
 				<div class="col-md-12" id="employee-list">
 					<div class="mb-2 d-flex justify-content-between">
@@ -101,7 +51,7 @@
 							<td>{{employee.employeeZipCode}}</td>
 							<td><span ng-click="deleteEmployee(employee)" class="fas fa-trash-alt"></span></td>
 						</tr>
-					</table>	
+					</table>
 				</div>
 			</div>
 		</div>
