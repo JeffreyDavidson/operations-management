@@ -4,6 +4,9 @@ angular.module("employeesApp",  []).controller("DBController", function ($scope,
     $scope.employeeCity;
     $scope.employeeState;
     $scope.employeeZipCode;
+
+    console.log(dataService)
+    $scope.firedCount = dataService.firedCount;
     
     var promise = dataService.getEmployees();
 
@@ -33,7 +36,6 @@ angular.module("employeesApp",  []).controller("DBController", function ($scope,
     }
     
     $scope.deleteEmployee = function(deletedEmployee) {
-        // console.log(deletedEmployee);
         dataService.removeEmployee(deletedEmployee);
         $scope.employeesList = dataService.getEmployees();
     }

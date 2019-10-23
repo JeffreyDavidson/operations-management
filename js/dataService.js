@@ -1,6 +1,7 @@
 angular.module("employeesApp").service("dataService", function ($http) {
     
     var employeesList = [];
+    this.firedCount = 0;
     
     this.getEmployees = function () {
         var url = "https://randomuser.me/api";
@@ -39,6 +40,8 @@ angular.module("employeesApp").service("dataService", function ($http) {
         console.log(employee);
         var employeesList = await this.getEmployees();
         console.log(employeesList);
+        this.firedCount++;
+        console.log(this.firedCount);
         employeesList.splice(employeesList.indexOf(employee), 1);
         var str = JSON.stringify(employeesList);
         localStorage.setItem("Employees", str);
