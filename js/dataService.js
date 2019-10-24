@@ -11,25 +11,24 @@ angular.module("employeesApp").service("dataService", function ($http) {
             inc: "name,location,id"
         };
         var config = { params: params };
-        return new Promise((resolve, reject) => {
-            $http.get(url, config)
-                .then(function (response) {
-                    var list = response.data.results;
-                    var newList = list.map(employee => ({
-                        employeeId: employee.id,
-                        employeeName: employee.name.first + ' ' + employee.name.last,
-                        employeeStreet: employee.location.street.number + ' ' + employee.location.street.name,
-                        employeeCity: employee.location.city,
-                        employeeState: employee.location.state,
-                        employeeZipCode: employee.location.postcode,
-                    }));
-                    employeesList = newList;
-                    resolve(employeesList);
-                });
-        });
+
+        return $http.get(url, config)
+            .then(function (response) {
+                var list = response.data.results;
+                var newList = list.map(employee => ({
+                    employeeName: employee.name.first + ' ' + employee.name.last,
+                    employeeStreet: employee.location.street.number + ' ' + employee.location.street.name,
+                    employeeCity: employee.location.city,
+                    employeeState: employee.location.state,
+                    employeeZipCode: employee.location.postcode,
+                }));
+                employeesList = newList;
+
+                return employeesList;
+            });
     }
 
-    this.getEmployees = async function () {
+    this.getEmployees = function () {
         if (employeesList.length > 0) {
             return Promise.resolve(employeesList);
         }
@@ -41,20 +40,21 @@ angular.module("employeesApp").service("dataService", function ($http) {
             }
         }
 
-        return await this.getNewEmployees();
+        return this.getNewEmployees();
     };
     
     this.addEmployee = function (employee) {
         var employeesList = this.getEmployees();
-        employeesList.push(employee);
+        employeesList.push(employee);   
+        console.log
         var str = JSON.stringify(employeesList);
         localStorage.setItem("Employees", str);
     };
     
     this.removeEmployee = async function (employee) {
-        var employeesList = await this.getEmployees();
-        this.firedCount++;
-        employeesList.splice(employeesList.findIndex(e => e.name === employee.name), 1);
-        localStorage.setItem("Employees", JSON.stringify(employeesList));
-    };
+        let employeesList = await this.getEmployees();
+        let output = employeesList.map((o, k) => (o.employeeName !== employee.employeeName));
+        localStorage.setItem("Employees", JSON.stringify(output));
+        return true;
+    }
 });
