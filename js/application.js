@@ -5,7 +5,6 @@ angular.module("employeesApp",  []).controller("DBController", function ($scope,
     $scope.employeeState;
     $scope.employeeZipCode;
 
-    console.log(dataService)
     $scope.firedCount = dataService.firedCount;
     
     var promise = dataService.getEmployees();
