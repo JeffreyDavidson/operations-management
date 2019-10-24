@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Employee Name</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip Code</th>
+        <th class="actions">Actions</th>
+    </tr>
+    <tr ng-show="employeesList.length === 0">
+        <td colspan="6">No employees hired.</td>
+    </tr>
+    <tr ng-show="employeesList.length!=0" ng-repeat="employee in employeesList track by $index">
+        <td>{{employee.employeeName}}</td>
+        <td>{{employee.employeeStreet}}</td>
+        <td>{{employee.employeeCity}}</td>
+        <td>{{employee.employeeState}}</td>
+        <td>{{employee.employeeZipCode}}</td>
+        <td><span ng-click="deleteEmployee(employee)" class="fas fa-trash-alt"></span></td>
+    </tr>
+</table>
