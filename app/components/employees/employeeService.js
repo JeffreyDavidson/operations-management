@@ -1,8 +1,8 @@
-angular.module("employeesApp").service("dataService", function ($http) {
-    
+angular.module("employeesApp")
+  .service("employeeService", function ($http) {
     var employeesList = [];
     this.firedCount = 0;
-    
+
     this.getNewEmployees = function () {
         var url = "https://randomuser.me/api";
         var params = {
@@ -16,11 +16,11 @@ angular.module("employeesApp").service("dataService", function ($http) {
             .then(function (response) {
                 var list = response.data.results;
                 var newList = list.map(employee => ({
-                    employeeName: employee.name.first + ' ' + employee.name.last,
-                    employeeStreet: employee.location.street.number + ' ' + employee.location.street.name,
-                    employeeCity: employee.location.city,
-                    employeeState: employee.location.state,
-                    employeeZipCode: employee.location.postcode,
+                    Name: employee.name.first + ' ' + employee.name.last,
+                    street: employee.location.street.number + ' ' + employee.location.street.name,
+                    city: employee.location.city,
+                    state: employee.location.state,
+                    zip: employee.location.postcode,
                 }));
                 employeesList = newList;
 
@@ -42,15 +42,15 @@ angular.module("employeesApp").service("dataService", function ($http) {
 
         return this.getNewEmployees();
     };
-    
+
     this.addEmployee = function (employee) {
         var employeesList = this.getEmployees();
-        employeesList.push(employee);   
+        employeesList.push(employee);
         console.log
         var str = JSON.stringify(employeesList);
         localStorage.setItem("Employees", str);
     };
-    
+
     this.removeEmployee = async function (employee) {
         let employeesList = await this.getEmployees();
         let output = employeesList.map((o, k) => (o.employeeName !== employee.employeeName));

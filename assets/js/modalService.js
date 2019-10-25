@@ -1,4 +1,5 @@
-angular.module("employeesApp").service("modalService", function () {
+angular.module("employeesApp", [])
+    .service("modalService", function () {
     var modals = []; // array of modals on the page
     var service = {};
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="employeesApp">
 	<head>
 	<meta charset="UTF-8">
 		<title>Operations Management</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://kit.fontawesome.com/20a549007e.js" crossorigin="anonymous"></script>
-		<link type="text/css" rel="stylesheet" href="css/application.css">
+		<link type="text/css" rel="stylesheet" href="./assets/css/application.css">
 	</head>
 
-	<body ng-app="employeesApp" ng-controller="DBController">
+	<body ng-controller="employeeController">
 		<div class="container">
 			<h1>Employee Directory</h1>
 			<hr>
@@ -18,7 +18,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h2>Add an Employee</h2>
-								<div ng-include="'views/form.html'"></div>
+								<ng-include src="./app/components/employees/views/form.html"></ng-include>
 							</div>
 						</div>
 					</div>
@@ -33,12 +33,10 @@
 							<i class="fas fa-plus"></i> Hire New Employee
 						</button>
 					</div>
-					<div ng-include="'views/table.html'"></div>
+					<ng-include src="./app/components/employees/views/table.html"></ng-include>
 				</div>
 			</div>
 		</div>
-		<script src="js/angular.min.js"></script>
-		<script src="js/application.js"></script>
-		<script src="js/dataService.js"></script>
+		<script src="./assets/js/angular.min.js"></script>
 	</body>
 </html> 
