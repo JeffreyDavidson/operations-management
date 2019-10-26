@@ -10,20 +10,20 @@ angular.module("employeesApp", [])
 
     $scope.addEmployee = function () {
         var employee = {
-            "name": $scope.name,
-            "street": $scope.street,
-            "city": $scope.city,
-            "state": $scope.state,
-            "zip": $scope.zip
+            "name": $scope.employee.name,
+            "street": $scope.employee.street,
+            "city": $scope.employee.city,
+            "state": $scope.employee.state,
+            "zip": $scope.employee.zip
         };
 
         employeeService.addEmployee(employee);
 
-        $scope.name = '';
-        $scope.street = '';
-        $scope.city = '';
-        $scope.state = '';
-        $scope.zip = '';
+        $scope.employee.name = '';
+        $scope.employee.street = '';
+        $scope.employee.city = '';
+        $scope.employee.state = '';
+        $scope.employee.zip = '';
 
         $scope.employees = employeeService.getEmployees();
     }
