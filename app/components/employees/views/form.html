@@ -2,27 +2,37 @@
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" class="form-control" ng-model="employee.name" ng-required="true">
-        <p ng-show="createForm.name.$invalid && createForm.name.$touched">You must fill out the name of the new employee.</p>
+        <p class="text-danger" 
+          ng-show="createForm.name.$invalid && createForm.name.$touched"
+          >You must fill out the name of the new employee.</p>
     </div>
     <div class="form-group">
         <label for="street">Street:</label>
         <input type="text" id="street" name="street" class="form-control" ng-model="employee.street" ng-required="true">
-        <p ng-show="createForm.street.$invalid && createForm.street.$touched">You must fill out the street address of the new employee.</p>
+        <p class="text-danger" 
+          ng-show="createForm.street.$invalid && createForm.street.$touched"
+          >You must fill out the street address of the new employee.</p>
     </div>
     <div class="form-group">
         <label for="city">City:</label>
         <input type="text" id="city" name="city" class="form-control" ng-model="employee.city" ng-required="true">
-        <p ng-show="createForm.city.$invalid && createForm.city.$touched">You must fill out the city of the new employee.</p>
+        <p class="text-danger" 
+          ng-show="createForm.city.$invalid && createForm.city.$touched"
+          >You must fill out the city of the new employee.</p>
     </div>
     <div class="form-group">
         <label for="state">State:</label>
         <input type="text" id="state" name="state" class="form-control" ng-model="employee.state" ng-required="true">
-        <p ng-show="createForm.state.$invalid && createForm.state.$touched">You must fill out the state of the new employee.</p>
+        <p class="text-danger" 
+          ng-show="createForm.state.$invalid && createForm.state.$touched"
+          >You must fill out the state of the new employee.</p>
     </div>
     <div class="form-group">
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" class="form-control" ng-model="employee.zip" ng-required="true">
-        <p ng-show="createForm.zip.$invalid && createForm.zip.$touched">You must fill out the zip code of the new employee.</p>
+        <p class="text-danger" 
+          ng-show="createForm.zip.$invalid && createForm.zip.$touched"
+          >You must fill out the zip code of the new employee.</p>
     </div>
     <button type="submit" ng-click="addEmployee()" class="btn btn-primary">Add</button>
 </form>
