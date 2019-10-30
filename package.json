@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JeffreyDavidson/operations-management/issues"
   },
-  "homepage": "https://github.com/JeffreyDavidson/operations-management#readme"
+  "homepage": "https://github.com/JeffreyDavidson/operations-management#readme",
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
 }
