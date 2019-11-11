@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/JeffreyDavidson/operations-management#readme",
   "dependencies": {
-    "angular": "^1.7.8",
-    "cross-env": "^6.0.3"
+    "angular": "^1.7.8"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "laravel-mix": "^5.0.0",
     "resolve-url-loader": "^3.1.0",
     "sass": "^1.23.2",
