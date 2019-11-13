@@ -15,7 +15,7 @@ export default function EmployeeService($http) {
             .then(function (response) {
                 var list = response.data.results;
                 var newList = list.map(employee => ({
-                    Name: employee.name.first + ' ' + employee.name.last,
+                    name: employee.name.first + ' ' + employee.name.last,
                     street: employee.location.street.number + ' ' + employee.location.street.name,
                     city: employee.location.city,
                     state: employee.location.state,
