@@ -10,7 +10,7 @@
     <tr ng-show="employeesList.length === 0">
         <td colspan="6">No employees currently hired.</td>
     </tr>
-    <tr ng-show="employees.length!=0" ng-repeat="employee in employees track by $index">
+    <tr ng-show="employees.length!=0" ng-repeat="employee in app.employees track by $index">
         <td>{{employee.name}}</td>
         <td>{{employee.street}}</td>
         <td>{{employee.city}}</td>

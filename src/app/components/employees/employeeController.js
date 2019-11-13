@@ -1,36 +1,37 @@
-export default function EmployeesController($scope, employeeService) {
-    $scope.firedCount = employeeService.firedCount;
+export default function EmployeesController(employeeService) {
+    var vm = this;
+    vm.firedCount = employeeService.firedCount;
 
     var promise = employeeService.getEmployees();
 
     promise.then(list => {
-        $scope.employees = list;
+        vm.employees = list;
     });
 
-    $scope.addEmployee = function () {
+    vm.addEmployee = function () {
         var employee = {
-            "name": $scope.employee.name,
-            "street": $scope.employee.street,
-            "city": $scope.employee.city,
-            "state": $scope.employee.state,
-            "zip": $scope.employee.zip
+            "name": vm.employee.name,
+            "street": vm.employee.street,
+            "city": vm.employee.city,
+            "state": vm.employee.state,
+            "zip": vm.employee.zip
         };
 
         employeeService.addEmployee(employee);
 
-        $scope.employee.name = '';
-        $scope.employee.street = '';
-        $scope.employee.city = '';
-        $scope.employee.state = '';
-        $scope.employee.zip = '';
+        vm.employee.name = '';
+        vm.employee.street = '';
+        vm.employee.city = '';
+        vm.employee.state = '';
+        vm.employee.zip = '';
 
-        $scope.employees = employeeService.getEmployees();
+        vm.employees = employeeService.getEmployees();
     }
 
-    $scope.deleteEmployee = function (employee) {
+    vm.deleteEmployee = function (employee) {
         employeeService.removeEmployee(employee);
-        $scope.employees = employeeService.getEmployees();
+        vm.employees = employeeService.getEmployees();
     }
 }
    
-EmployeesController.$inject = ['$scope', 'employeeService'];
+EmployeesController.$inject = ['employeeService'];
