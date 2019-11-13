@@ -45,7 +45,6 @@ export default function EmployeeService($http) {
     this.addEmployee = function (employee) {
         var employeesList = this.getEmployees();
         employeesList.push(employee);
-        console.log
         var str = JSON.stringify(employeesList);
         localStorage.setItem("Employees", str);
     };
