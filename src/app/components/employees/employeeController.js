@@ -1,5 +1,4 @@
-angular.module("employeesApp", [])
-  .controller("employeeController", function ($scope, employeeService) {
+export default function EmployeesController($scope, employeeService) {
     $scope.firedCount = employeeService.firedCount;
 
     var promise = employeeService.getEmployees();
@@ -32,4 +31,6 @@ angular.module("employeesApp", [])
         employeeService.removeEmployee(employee);
         $scope.employees = employeeService.getEmployees();
     }
-});
+}
+   
+EmployeesController.$inject = ['$scope', 'employeeService'];

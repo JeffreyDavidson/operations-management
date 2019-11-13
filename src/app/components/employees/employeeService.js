@@ -1,5 +1,4 @@
-angular.module("employeesApp")
-  .service("employeeService", function ($http) {
+export default function EmployeeService($http) {
     var employeesList = [];
     this.firedCount = 0;
 
@@ -57,4 +56,6 @@ angular.module("employeesApp")
         localStorage.setItem("Employees", JSON.stringify(output));
         return true;
     }
-});
+}
+
+EmployeeService.$inject = ['$http'];
