@@ -1,12 +1,7 @@
 export default function EmployeesController(employeeService) {
     var vm = this;
     vm.firedCount = employeeService.firedCount;
-
-    var promise = employeeService.getEmployees();
-
-    promise.then(list => {
-        vm.employees = list;
-    });
+    vm.employees = employeeService.buildEmployeeList();
 
     vm.addEmployee = function () {
         var employee = {
@@ -29,6 +24,7 @@ export default function EmployeesController(employeeService) {
     }
 
     vm.deleteEmployee = function (employee) {
+        console.log('delete employee function hit');
         employeeService.removeEmployee(employee);
         vm.employees = employeeService.getEmployees();
     }

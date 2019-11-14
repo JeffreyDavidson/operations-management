@@ -2,46 +2,6 @@ export default function EmployeeService($http) {
     var employeesList = [];
     this.firedCount = 0;
 
-    this.getNewEmployees = function () {
-        var url = "https://randomuser.me/api";
-        var params = {
-            nat: "us",
-            results: 100,
-            inc: "name,location,id"
-        };
-        var config = { params: params };
-
-        return $http.get(url, config)
-            .then(function (response) {
-                var list = response.data.results;
-                var newList = list.map(employee => ({
-                    name: employee.name.first + ' ' + employee.name.last,
-                    street: employee.location.street.number + ' ' + employee.location.street.name,
-                    city: employee.location.city,
-                    state: employee.location.state,
-                    zip: employee.location.postcode,
-                }));
-                employeesList = newList;
-
-                return employeesList;
-            });
-    }
-
-    this.getEmployees = function () {
-        if (employeesList.length > 0) {
-            return Promise.resolve(employeesList);
-        }
-
-        if (localStorage.getItem("Employees") !== null) {
-            employeesList = JSON.parse(localStorage.getItem("Employees"));
-            if (employeesList.length > 0) {
-                return Promise.resolve(employeesList);
-            }
-        }
-
-        return this.getNewEmployees();
-    };
-
     this.addEmployee = function (employee) {
         var employeesList = this.getEmployees();
         employeesList.push(employee);
@@ -51,9 +11,50 @@ export default function EmployeeService($http) {
 
     this.removeEmployee = async function (employee) {
         let employeesList = await this.getEmployees();
-        let output = employeesList.map((o, k) => (o.employeeName !== employee.employeeName));
+        let output = employeesList.filter((o, k) => (o.name !== employee.name));
         localStorage.setItem("Employees", JSON.stringify(output));
         return true;
+    }
+
+    buildEmployeeList = () => {
+        return localStorage.getItem('Employees') !== null ?
+            JSON.parse(localStorage.getItem('Employees'))
+            :
+            this.generateEmployeeListAPI();
+    }
+    
+    generateEmployeeListAPI = () => {
+        let promise = new Promise((res, rej) => {
+            let config = {
+                prarms: {
+                    nat: "us",
+                    results: 100,
+                    inc: "name,location,id"
+                }
+            };
+    
+            let url = "https://randomuser.me/api";
+    
+            $http.get(url, config)
+        })
+    
+        promise.then((res) => {
+            JSON.stringify(res.data.results.map(employee => ({
+                        name: employee.name.first + ' ' + employee.name.last,
+                        street: employee.location.street.number + ' ' + employee.location.street.name,
+                        city: employee.location.city,
+                        state: employee.location.state,
+                        zip: employee.location.postcode,
+                        }
+                    )
+                )
+            );
+            this.buildEmployeeList();
+        });
+    
+        promise.catch((e) => {
+            alert('Error: Communicating with API');
+        });
     }
 }
 
