@@ -7,15 +7,15 @@
         <th>Zip Code</th>
         <th class="actions">Actions</th>
     </tr>
-    <tr ng-show="employeesList.length === 0">
+    <tr ng-show="app.employeesList.length === 0">
         <td colspan="6">No employees currently hired.</td>
     </tr>
-    <tr ng-show="employees.length!=0" ng-repeat="employee in app.employees track by $index">
+    <tr ng-show="app.employees.length!=0" ng-repeat="employee in app.employees track by $index">
         <td>{{employee.name}}</td>
         <td>{{employee.street}}</td>
         <td>{{employee.city}}</td>
         <td>{{employee.state}}</td>
         <td>{{employee.zip}}</td>
-        <td><span ng-click="deleteEmployee(employee)" class="fas fa-trash-alt"></span></td>
+        <td><span ng-click="app.deleteEmployee(employee)" class="fas fa-trash-alt"></span></td>
     </tr>
 </table>
