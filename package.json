@@ -25,6 +25,7 @@
     "angular": "^1.7.8"
   },
   "devDependencies": {
+    "bootstrap": "^4.3.1",
     "cross-env": "^6.0.3",
     "laravel-mix": "^5.0.0",
     "resolve-url-loader": "^3.1.0",
