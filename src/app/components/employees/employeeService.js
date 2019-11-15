@@ -2,15 +2,15 @@ export default function EmployeeService($http) {
     var employeesList = [];
     this.firedCount = 0;
 
-    this.addEmployee = function (employee) {
+    this.addEmployee = (employee) => {
         var employeesList = this.getEmployees();
         employeesList.push(employee);
         var str = JSON.stringify(employeesList);
         localStorage.setItem("Employees", str);
-    };
+    }
 
-    this.removeEmployee = async function (employee) {
-        let employeesList = await this.buildEmployeeList();
+    this.removeEmployee = (employee) => {
+        let employeesList = this.buildEmployeeList();
         let output = employeesList.filter((o, k) => (o.name !== employee.name));
         localStorage.setItem("Employees", JSON.stringify(output));
         return true;
@@ -55,6 +55,23 @@ export default function EmployeeService($http) {
         promise.catch((e) => {
             alert('Error: Communicating with API');
         });
+    }
+
+    this.doesListExist = () => {
+        let empList = localStorage.getItem('Employees');
+
+        if(empList === null) {
+            // exit early
+            return false;
+        }
+
+        empList = JSON.parse(empList);
+        
+        return (empList.length > 0);
+    }
+
+    this.getExistingList = () => {
+        return JSON.parse(localStorage.getItem('Employees'));
     }
 }
 
