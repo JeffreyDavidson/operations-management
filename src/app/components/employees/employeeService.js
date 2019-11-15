@@ -16,14 +16,14 @@ export default function EmployeeService($http) {
         return true;
     }
 
-    buildEmployeeList = () => {
+    this.buildEmployeeList = () => {
         return localStorage.getItem('Employees') !== null ?
             JSON.parse(localStorage.getItem('Employees'))
             :
             this.generateEmployeeListAPI();
     }
     
-    generateEmployeeListAPI = () => {
+    this.generateEmployeeListAPI = () => {
         let promise = new Promise((res, rej) => {
             let config = {
                 prarms: {
