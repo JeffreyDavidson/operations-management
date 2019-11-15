@@ -20,13 +20,12 @@ export default function EmployeesController(employeeService) {
         vm.employee.state = '';
         vm.employee.zip = '';
 
-        vm.employees = employeeService.getEmployees();
+        vm.employees = employeeService.buildEmployeeList();
     }
 
     vm.deleteEmployee = function (employee) {
-        console.log('delete employee function hit');
         employeeService.removeEmployee(employee);
-        vm.employees = employeeService.getEmployees();
+        vm.employees = employeeService.buildEmployeeList();
     }
 }
    

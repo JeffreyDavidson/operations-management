@@ -10,7 +10,7 @@ export default function EmployeeService($http) {
     };
 
     this.removeEmployee = async function (employee) {
-        let employeesList = await this.getEmployees();
+        let employeesList = await this.buildEmployeeList();
         let output = employeesList.filter((o, k) => (o.name !== employee.name));
         localStorage.setItem("Employees", JSON.stringify(output));
         return true;
