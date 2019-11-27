@@ -1,6 +1,9 @@
 export default function EmployeesController(employeeService) {
     var vm = this;
     vm.firedCount = employeeService.firedCount;
+    vm.employees = [];
+
+
     vm.employees = employeeService.buildEmployeeList();
 
     vm.addEmployee = () => {
@@ -14,9 +17,9 @@ export default function EmployeesController(employeeService) {
 
         employeeService.addEmployee(employee);
 
-        /** 
-         * Create an empty employee object by clearing 
-         * out the form inputs after submission. 
+        /**
+         * Create an empty employee object by clearing
+         * out the form inputs after submission.
          */
         this.employee = Object.keys(this.employee).map(
             key => (this.employee[key] = "")
@@ -31,11 +34,10 @@ export default function EmployeesController(employeeService) {
         }
 
         let output = employeeService.getExistingList().filter((o, k) => (o.name !== employee.name));
-        
+
         localStorage.setItem("Employees", JSON.stringify(output));
 
         return true;
     }
 }
-   
 EmployeesController.$inject = ['employeeService'];
