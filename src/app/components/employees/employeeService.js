@@ -1,25 +1,10 @@
 export default function EmployeeService($http) {
-    var employeesList = [];
     this.firedCount = 0;
-
-    this.addEmployee = (employee) => {
-        var employeesList = this.getEmployees();
-        employeesList.push(employee);
-        var str = JSON.stringify(employeesList);
-        localStorage.setItem("Employees", str);
-    }
-
-    this.removeEmployee = (employee) => {
-        let employeesList = this.buildEmployeeList();
-        let output = employeesList.filter((o, k) => (o.name !== employee.name));
-        localStorage.setItem("Employees", JSON.stringify(output));
-        return true;
-    }
 
     this.buildEmployeeList = () => {
         console.log('buildEmployeeList')
         if(!localStorage.getItem('Employees')) {
-            return this.generateEmployeeListAPI();
+            this.generateEmployeeListAPI();
         }
 
         return JSON.parse(localStorage.getItem('Employees'));
@@ -30,7 +15,7 @@ export default function EmployeeService($http) {
 
         let url = "https://randomuser.me/api";
         let config = {
-            prarms: {
+            params: {
                 nat: "us",
                 results: 100,
                 inc: "name,location,id"
@@ -39,8 +24,9 @@ export default function EmployeeService($http) {
 
         $http.get(url, config)
         .then(
-            (response)=>{
-                let data = response.data.results;
+            (res)=>{
+                let data = res.data.results;
+                this.employeesList = data;
                 localStorage.setItem('Employees', JSON.stringify(data.map(employee => ({
                             name: employee.name.first + ' ' + employee.name.last,
                             street: employee.location.street.number + ' ' + employee.location.street.name,
@@ -51,10 +37,9 @@ export default function EmployeeService($http) {
                         )
                     )
                 ));
-                return data;
             }
         ).catch(
-            (response) => {
+            (res) => {
                 alert('Error: Communicating with API');
             }
         ).finally(
@@ -64,14 +49,12 @@ export default function EmployeeService($http) {
 
     this.doesListExist = () => {
         let empList = localStorage.getItem('Employees');
-
         if(empList === null) {
             // exit early
             return false;
         }
 
         empList = JSON.parse(empList);
-
         return (empList.length > 0);
     }
 
