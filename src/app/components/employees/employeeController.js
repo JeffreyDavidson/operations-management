@@ -1,4 +1,4 @@
-export default function EmployeesController(employeeService, $scop, $intervale) {
+export default function EmployeesController(employeeService, $scope, $interval) {
     var vm = this;
     vm.timed = null;
     vm.firedCount = employeeService.firedCount;
