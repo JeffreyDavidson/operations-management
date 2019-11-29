@@ -1,6 +1,5 @@
-angular.module("employeesApp", [])
-    .service("modalService", function () {
-    var modals = []; // array of modals on the page
+export default function ModalService() {
+    var modals = ['hire-employee-modal']; // array of modals on the page
     var service = {};
 
     service.add = add;
@@ -21,6 +20,7 @@ angular.module("employeesApp", [])
 
     function open(id) {
         // open modal specified by id
+        console.log(id);
         var modal = _.findWhere(modals, { id: id });
         modal.open();
     }
@@ -30,4 +30,4 @@ angular.module("employeesApp", [])
         var modal = _.findWhere(modals, { id: id });
         modal.close();
     }
-});
+}
