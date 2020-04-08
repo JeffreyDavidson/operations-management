@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html ng-app="employeesApp">
-	<head>
-	<meta charset="UTF-8">
-		<title>Operations Management</title>
-		<script src="https://kit.fontawesome.com/20a549007e.js" crossorigin="anonymous"></script>
-		<link type="text/css" rel="stylesheet" href="dist/assets/css/app.css">
-	</head>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Operations Management</title>
+        <script
+            src="https://kit.fontawesome.com/20a549007e.js"
+            crossorigin="anonymous"
+        ></script>
+        <link type="text/css" rel="stylesheet" href="dist/assets/css/app.css" />
+    </head>
 
-	<body ng-controller="employeeController as app">
-		<div class="container">
-			<h1>Employee Directory</h1>
-			<hr>
-			<modal id="hire-employee-modal">
-				<div class="modal">
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-md-12">
-								<h2>Add an Employee</h2>
-								<ng-include src="'src/app/components/employees/views/form.html'"></ng-include>
-							</div>
-						</div>
-					</div>
-				</div>
-			</modal>
-			<ng-include src="'src/app/components/employees/views/stats.html'"></ng-include>
-			<div class="row mt-4">	
-				<div class="col-md-12" id="employee-list">
-					<div class="mb-2 d-flex justify-content-between">
-						<h2>Current List of Employees</h2>
-						<button class="btn btn-primary" ng-click="vm.openModal('hire-employee-modal')">
-							<i class="fas fa-plus"></i> Hire New Employee
-						</button>
-					</div>
-					<ng-include src="'src/app/components/employees/views/table.html'"></ng-include>
-				</div>
-			</div>
-		</div>
-		<script src="dist/assets/js/app.js"></script>
-	</body>
-</html> 
+    <body ng-controller="employeeController as app">
+        <div class="container">
+            <h1>Employee Directory</h1>
+            <hr />
+            <modal id="hire-employee-modal">
+                <div class="modal">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Add an Employee</h2>
+                                <ng-include
+                                    src="'src/app/components/employees/views/form.html'"
+                                ></ng-include>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </modal>
+            <ng-include
+                src="'src/app/components/employees/views/stats.html'"
+            ></ng-include>
+            <div class="row mt-4">
+                <div class="col-md-12" id="employee-list">
+                    <div class="mb-2 d-flex justify-content-between">
+                        <h2>Current List of Employees</h2>
+                        <button
+                            class="btn btn-primary"
+                            ng-click="app.openModal('hire-employee-modal')"
+                        >
+                            <i class="fas fa-plus"></i> Hire New Employee
+                        </button>
+                    </div>
+                    <ng-include
+                        src="'src/app/components/employees/views/table.html'"
+                    ></ng-include>
+                </div>
+            </div>
+        </div>
+        <script src="dist/assets/js/app.js"></script>
+    </body>
+</html>
